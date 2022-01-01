@@ -1,0 +1,12 @@
+# deps
+# deps
+node_modules
+yarn-error.log
+
+# build
+out
+src/**/*.js
+
+# tests
+.nyc_output
+coverage

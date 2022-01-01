@@ -1,0 +1,4 @@
+extension: [ts]
+require: ['@swc-node/register']
+ui: qunit
+reporter: spec

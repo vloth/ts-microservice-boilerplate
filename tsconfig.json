@@ -1,0 +1,14 @@
+{
+  "noEmit": true,
+  "outDir": "out",
+  "compilerOptions": {
+    "target": "es2017",
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "baseUrl": "src"
+  }
+}
