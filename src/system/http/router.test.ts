@@ -1,10 +1,10 @@
-import { deepEqual } from 'assert'
+import { equals } from '../../test/helper'
 import { Context } from 'koa'
 import { flat } from './router'
 
 const dummyHandler = (ctx: Context) => (ctx.status = 200)
 
-suite('routes')
+suite('router')
 
 const postPet = {
   handler: dummyHandler,
@@ -31,7 +31,7 @@ const uploadImagePet = {
   responses: { 200: 'schema#Str' }
 }
 
-test('flat routes', () => {
+test('can flatten routes', () => {
   const routes = {
     '/pet': {
       tags: ['pet'],
@@ -44,7 +44,7 @@ test('flat routes', () => {
     }
   }
 
-  deepEqual(flat(routes),
+  equals(flat(routes),
     {
       '/pet': {
         post: postPet,

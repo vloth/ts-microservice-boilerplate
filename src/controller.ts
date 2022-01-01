@@ -25,7 +25,7 @@ export async function withdraw(withdrawValue: Schema.WalletWithdraw) {
   const total = await Db.getWalletTotal()
 
   if (canWithdraw(total, withdrawValue)) {
-    return r.failure('withdrawal amount bigger than the total in the wallet.')
+    return r.failure('withdraw amount bigger than the total in the wallet.')
   }
 
   const usdAmount = await HttpOut.getUsdBtcPrice()

@@ -1,4 +1,5 @@
 extension: [ts]
+file: [src/test/fixture.ts]
 require: ['@swc-node/register']
 ui: qunit
 reporter: spec

@@ -1,4 +1,5 @@
 import * as z from 'zod'
+import { NegativeNumber } from './primitives'
 
 export const WalletTransaction = z.object({
   id: z.string().uuid(),
@@ -18,7 +19,7 @@ export const WalletDeposit = z.object({
 })
 
 export const WalletWithdraw = z.object({
-  btc: z.number().negative()
+  btc: NegativeNumber
 })
 
 export type WalletTransaction = z.infer<typeof WalletTransaction>
