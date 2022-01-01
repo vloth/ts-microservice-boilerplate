@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "swc src -d out",
-    "typecheck": "tsc",
-    "start": "node out/server",
     "dev": "nodemon -q -e ts --watch src --exec 'node -r @swc-node/register src/server | pino-pretty -f -l'",
+    "typecheck": "tsc",
+    "build": "swc src -d out",
+    "start": "node out/server",
+    "lint": "eslint src/**/*.ts",
     "test": "mocha 'src/**/*.test.ts'",
     "test:coverage": "nyc --reporter html --reporter text yarn test --reporter dot"
   },
