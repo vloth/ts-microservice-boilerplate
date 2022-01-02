@@ -3,7 +3,7 @@ import { Pool, PoolClient, types } from 'pg'
 import { migrate } from 'postgres-migrations'
 export type Queryable = Pool | PoolClient
 
-let db = null as unknown as Pool
+export let db = null as unknown as Pool
 let NUMERIC_TYPE = 1700
 
 function fixParser() {
@@ -11,14 +11,10 @@ function fixParser() {
 }
 
 export const Db = {
-  start(connectionString: string) {
+  new(connectionString: string) {
     fixParser()
     db = new Pool({ connectionString })
-    return db
-  },
-
-  async connect() {
-    return db.connect()
+    return Db
   },
 
   async migrate() {
@@ -26,6 +22,8 @@ export const Db = {
 
   },
 
-  stop() { return db?.end() }
+  stop() {
+    return db.end()
+  }
 }
 

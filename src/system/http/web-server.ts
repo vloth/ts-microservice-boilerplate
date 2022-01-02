@@ -14,13 +14,11 @@ export type WebServerInfo = Pick<DocsInfo, 'title' | 'description'>
 
 let app: Koa | null = null
 let server: http.Server | null = null
-let memport: number | null = null
 
 export const WebServer = {
-  create({ title, description, routes }: WebServerInfo, port: number) {
+  new({ title, description, routes }: WebServerInfo) {
     const flatroutes = flat(routes)
 
-    memport = port
     app = new Koa()
     server = http.createServer(app?.callback())
 
@@ -31,7 +29,7 @@ export const WebServer = {
       description,
     })
 
-    return app
+    app
       .use(shutdown(server))
       .use(bodyparser())
       .use(swagger({
@@ -41,12 +39,14 @@ export const WebServer = {
       }))
       .use(schemaValidationMiddleware)
       .use(mount(flatroutes).routes())
+
+    return WebServer
   },
 
-  start() {
+  start(port: number) {
     return new Promise(resolve => {
-      ok(memport && server && app)
-      return app.listen(memport, 'localhost', () => resolve(undefined))
+      ok(server && app)
+      return app.listen(port, 'localhost', () => resolve(undefined))
     })
   },
 

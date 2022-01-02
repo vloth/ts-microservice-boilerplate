@@ -1,3 +1,10 @@
+import assert from 'assert'
+
+export function oki<T>(value: null | undefined | false | T, message?: string | Error): T {
+  assert.ok(value, message)
+  return value
+}
+
 export function vals<T, S extends keyof T>(record: T, ...keys: Array<S>) {
   return keys.map(key => record[key])
 }
