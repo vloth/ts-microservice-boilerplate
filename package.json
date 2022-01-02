@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -q -e ts --watch src --exec 'node -r @swc-node/register src/server | pino-pretty -f -l'",
+    "dev": "dotenv -c -- nodemon -q -e ts --watch src --exec 'node -r @swc-node/register src/server | pino-pretty -f -l'",
     "typecheck": "tsc",
     "build": "swc src -d out",
     "start": "node out/server",
@@ -31,6 +31,7 @@
     "chalk": "4.1.2",
     "chokidar": "^3.5.2",
     "concurrently": "^6.5.1",
+    "dotenv-cli": "^4.1.1",
     "eslint": "^8.5.0",
     "fast-check": "^2.20.0",
     "koa2-swagger-ui": "^5.3.0",

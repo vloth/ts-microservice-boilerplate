@@ -1,9 +1,10 @@
 import { Db, WebServer, logger } from './system'
 import { routes } from './routes'
+import { oki } from './utils'
 
 async function main() {
-  const port = 3001
-  const db = 'postgresql://postgres:postgres@localhost:5432/btc_wallet'
+  const port = parseInt(oki(process.env.port), 10)
+  const db = oki(process.env.db)
 
   try {
     await Db.new(db).migrate()

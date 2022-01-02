@@ -1,5 +1,4 @@
 # deps
-# deps
 node_modules
 yarn-error.log
 
@@ -10,3 +9,6 @@ src/**/*.js
 # tests
 .nyc_output
 coverage
+
+#env
+.env.local
