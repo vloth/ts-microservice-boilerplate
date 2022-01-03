@@ -1,5 +1,5 @@
 import { v5 as uuid } from 'uuid'
-import * as Schema from './schemas'
+import * as Schema from '@app/schemas'
 
 // uuid v5 private namespace
 const namespace = '266ff8e6-4a1b-4508-a39a-f67f5042bb02'

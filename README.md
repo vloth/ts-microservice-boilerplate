@@ -98,7 +98,9 @@ docker-compose -f docker/docker-compose.yml down -v --remove-orphans
 └── src -- Source code folder
     ├── system -- Source for common utilities and helpers.
     ├── schemas -- Schema source code
-    ├── test -- Test helpers and integration tests
+    ├── test -- Test helpers and source code
+    │   ├── unit -- Unit tests and source code
+    │   └── integration -- Integration tests
     └── * -- Source for the service example (wallet).
 ```
 

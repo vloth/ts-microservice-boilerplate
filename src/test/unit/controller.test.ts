@@ -1,7 +1,7 @@
-import { ok, equals, stub } from './test/helper'
-import * as Db from './db'
-import * as Controller from './controller'
-import * as HttpOut from './ports/http-out'
+import { ok, equals, stub } from '../helper'
+import * as Db from '@app/db'
+import * as Controller from '@app/controller'
+import * as HttpOut from '@app/ports/http-out'
 
 suite('controller')
 

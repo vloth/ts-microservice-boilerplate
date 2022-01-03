@@ -12,7 +12,10 @@
       "legacyDecorator": true,
       "decoratorMetadata": true
     },
-    "baseUrl": "."
+    "baseUrl": "src",
+    "paths": {
+      "@app/*": ["./*"]
+    }
   },
   "module": {
     "type": "commonjs"

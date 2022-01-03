@@ -1,6 +1,6 @@
-import { equals } from '../../test/helper'
 import { Context } from 'koa'
-import { flat } from './router'
+import { equals } from '@app/test/helper'
+import { flat } from '@app/system/http/router'
 
 const dummyHandler = (ctx: Context) => (ctx.status = 200)
 

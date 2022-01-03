@@ -1,6 +1,6 @@
-import { ok, equals, fc, gen } from './test/helper'
-import * as Logics from './logics'
-import * as Schema from './schemas'
+import { ok, equals, fc, gen } from '../helper'
+import * as Logics from '@app/logics'
+import * as Schema from '@app/schemas'
 
 suite('logics')
 

@@ -1,5 +1,5 @@
-import * as Schema from './schemas'
-import * as HttpIn from './ports/http-in'
+import * as Schema from '@app/schemas'
+import * as HttpIn from '@app/ports/http-in'
 
 export const routes = {
   title: 'btc-wallet',

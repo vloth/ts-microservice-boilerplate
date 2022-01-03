@@ -1,7 +1,7 @@
 import { sumBy } from 'lodash'
-import { equals, stub } from '../../test/helper'
-import * as HttpOut from '../../ports/http-out'
-import * as Controller from '../../controller'
+import { equals, stub } from '@app/test/helper'
+import * as HttpOut from '@app/ports/http-out'
+import * as Controller from '@app/controller'
 
 suite('wallet')
 

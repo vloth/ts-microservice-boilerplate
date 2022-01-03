@@ -1,8 +1,8 @@
 import { Context } from 'koa'
 import { merge } from 'lodash'
-import * as Adapters from '../adapters'
-import * as Schema from '../schemas'
-import * as Controller from '../controller'
+import * as Adapters from '@app/adapters'
+import * as Schema from '@app/schemas'
+import * as Controller from '@app/controller'
 
 export async function getHistory(ctx: Context) {
   const { entries, usdAmount } = await Controller.getWallet()

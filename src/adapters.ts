@@ -1,5 +1,5 @@
 import { sumBy } from 'lodash'
-import * as Schema from './schemas'
+import * as Schema from '@app/schemas'
 
 export function toWalletTransaction(tx: Schema.DbWalletTransaction): Schema.WalletTransaction {
   return {

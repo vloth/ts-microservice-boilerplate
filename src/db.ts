@@ -1,6 +1,6 @@
-import * as Schema from './schemas'
-import { db } from './system/db/client'
-import { vals } from './utils'
+import * as Schema from '@app/schemas'
+import { db } from '@app/system/db/client'
+import { vals } from '@app/utils'
 
 export async function getWallet() {
   const result = await db.query<Schema.DbWalletTransaction>('select * from wallet')

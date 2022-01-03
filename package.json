@@ -4,20 +4,20 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "dotenv -c -- nodemon -q -e ts --watch src --exec 'node -r @swc-node/register src/server | pino-pretty -f -l'",
+    "dev": "dotenv -c -- nodemon -q -e ts --watch src --exec 'swc-node src/server | pino-pretty -f -l'",
     "typecheck": "tsc",
     "build": "swc src -d out",
     "start": "node out/server",
     "lint": "eslint src/**/*.ts",
-    "test": "mocha --exclude 'src/test/**/*.ts' 'src/**/*.test.ts'",
+    "test": "mocha 'src/test/unit/**/*.test.ts'",
     "test:integration": "./resources/scripts/pg-fixture mocha --colors --exit 'src/test/integration/**/*.test.ts'",
     "test:coverage": "nyc --reporter html --reporter text yarn test --reporter dot"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
-    "@swc-node/register": "^1.4.2",
     "@swc/cli": "^0.1.55",
     "@swc/core": "^1.2.123",
+    "@swc/register": "^0.1.9",
     "@types/koa": "^2.13.4",
     "@types/koa-bodyparser": "^4.3.5",
     "@types/lodash": "^4.14.178",
@@ -42,7 +42,9 @@
     "pino-pretty": "^7.3.0",
     "postgres-migrations": "^5.3.0",
     "testcontainers": "^8.1.2",
+    "ts-node": "^10.4.0",
     "ts-sinon": "^2.0.2",
+    "tsconfig-paths": "^3.12.0",
     "typescript": "^4.5.4",
     "zod-fast-check": "^0.5.0"
   },

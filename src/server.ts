@@ -1,6 +1,6 @@
-import { Db, WebServer, logger } from './system'
-import { routes } from './routes'
-import { oki } from './utils'
+import { Db, WebServer, logger } from '@app/system'
+import { routes } from '@app/routes'
+import { oki } from '@app/utils'
 
 async function main() {
   const port = parseInt(oki(process.env.port), 10)

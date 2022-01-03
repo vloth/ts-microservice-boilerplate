@@ -1,9 +1,9 @@
-import * as Adapters from './adapters'
-import * as Schema from './schemas'
-import * as HttpOut from './ports/http-out'
-import * as Db from './db'
-import { Result } from './utils'
-import { WalletTransaction, canWithdraw } from './logics'
+import * as Adapters from '@app/adapters'
+import * as Schema from '@app/schemas'
+import * as HttpOut from '@app/ports/http-out'
+import * as Db from '@app/db'
+import { Result } from '@app/utils'
+import { WalletTransaction, canWithdraw } from '@app/logics'
 
 export async function getWallet() {
   const entries = await Db.getWallet()
