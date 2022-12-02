@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-export function oki<T>(value: null | undefined | false | T, message?: string | Error): T {
+export function fine<T>(value: null | undefined | false | T, message?: string | Error): T {
   assert.ok(value, message)
   return value
 }
@@ -9,25 +9,31 @@ export function vals<T, S extends keyof T>(record: T, ...keys: Array<S>) {
   return keys.map(key => record[key])
 }
 
-export type Success<T> = { success: true; detail: T }
-export type Fail = { success: false; reason: string; detail?: Record<string, unknown> | Error }
-export type Result<T> = Success<T> | Fail
+export type Result<T, E = undefined> =
+	| { ok: true; value: T }
+	| { ok: false; error: E }
 
-interface ResultUtils<T> {
-  success(t: T): Result<T>
-  failure(reason: string): Result<T>
-  failure(reason: string, detail: Record<string, unknown>): Result<T>
-  failure(error: Error): Result<T>
+export function ok<T>(data: T): Result<T, never>
+export function ok(): Result<undefined, never>
+export function ok<T>(data?: T) {
+    return { ok: true, value: data } as Result<T, never>
 }
 
-export function Result<T>() {
-  const utils: ResultUtils<T> = {
-    success: detail => ({ success: true, detail }),
-    failure: (reason: string | Error, detail?: Fail['detail']): Result<T> =>
-      typeof reason === 'string'
-        ? { success: false, reason, detail }
-        : { success: false, reason: String(reason), detail },
-  }
-  return utils
+export function err<E>(error: E): Result<never, E> {
+    return { ok: false, error }
 }
 
+export function unwrap<T, E>(result: Result<T, E>): T {
+    if (!result.ok)
+        throw Error(`Expected result to be ok,\n\t"${result.error}"`)
+    return result.value
+}
+
+export function flat<T, E>(results: Result<T, E>[]): Result<T[], E[]> {
+    const collectedErrors = results.map(r => !r.ok && r.error).filter(Boolean) as E[]
+
+    if (collectedErrors.length)
+        return err(collectedErrors)
+
+    return ok(results.map(r => r.ok && r.value).filter(Boolean) as T[])
+}

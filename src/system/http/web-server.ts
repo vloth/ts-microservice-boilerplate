@@ -2,6 +2,7 @@ import { ok } from 'assert'
 import Koa from 'koa'
 import http from 'http'
 import bodyparser from 'koa-bodyparser'
+import { fine } from '@app/utils'
 import { koaSwagger as swagger } from 'koa2-swagger-ui'
 import { flat, mount } from './router'
 import { DocsInfo, gendocs } from './gen-docs'
@@ -43,10 +44,10 @@ export const WebServer = {
     return WebServer
   },
 
-  start(port: number) {
-    return new Promise(resolve => {
+  start(port = 0) {
+    return new Promise<http.Server>(resolve => {
       ok(server && app)
-      return app.listen(port, 'localhost', () => resolve(undefined))
+      const inst = app.listen(port, '0.0.0.0', () => resolve(fine(inst)))
     })
   },
 

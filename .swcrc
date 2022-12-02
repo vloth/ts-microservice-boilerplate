@@ -12,9 +12,10 @@
       "legacyDecorator": true,
       "decoratorMetadata": true
     },
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@app/*": ["./*"]
+      "@app/*": ["src/*"],
+      "@test/*": ["test/*"]
     }
   },
   "module": {

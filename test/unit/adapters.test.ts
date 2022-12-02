@@ -1,5 +1,5 @@
 import { sumBy } from 'lodash'
-import { equals, fc, gen } from '@app/test/helper'
+import { equals, fc, gen } from '@test/helper'
 import * as Adapters from '@app/adapters'
 
 suite('adapters')

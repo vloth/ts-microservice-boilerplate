@@ -21,8 +21,8 @@ export async function doWithdraw(ctx: Context) {
   const withdrawal = Schema.WalletWithdraw.parse(ctx.request.body)
   const r = await Controller.withdraw(withdrawal)
 
-  if (!r.success)
-    return merge(ctx, { body: r.reason, status: 400 })
+  if (!r.ok)
+    return merge(ctx, { body: r.error, status: 400 })
 
-  merge(ctx, { body: Adapters.toWalletTransaction(r.detail), status: 201 })
+  merge(ctx, { body: Adapters.toWalletTransaction(r.value), status: 201 })
 }

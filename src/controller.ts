@@ -2,8 +2,8 @@ import * as Adapters from '@app/adapters'
 import * as Schema from '@app/schemas'
 import * as HttpOut from '@app/ports/http-out'
 import * as Db from '@app/db'
-import { Result } from '@app/utils'
 import { WalletTransaction, canWithdraw } from '@app/logics'
+import { err, ok } from './utils'
 
 export async function getWallet() {
   const entries = await Db.getWallet()
@@ -21,11 +21,10 @@ export async function deposit(depositValue: Schema.WalletDeposit) {
 }
 
 export async function withdraw(withdrawValue: Schema.WalletWithdraw) {
-  const r = Result<Schema.DbWalletTransaction>()
   const total = await Db.getWalletTotal()
 
   if (canWithdraw(total, withdrawValue)) {
-    return r.failure('withdraw amount bigger than the total in the wallet.')
+    return err('withdraw amount bigger than the total in the wallet.')
   }
 
   const usdAmount = await HttpOut.getUsdBtcPrice()
@@ -33,5 +32,5 @@ export async function withdraw(withdrawValue: Schema.WalletWithdraw) {
     WalletTransaction(new Date(), withdrawValue.btc, usdAmount)
   )
 
-  return r.success(await Db.insertWalletTransaction(transaction))
+  return ok(await Db.insertWalletTransaction(transaction))
 }

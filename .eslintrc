@@ -4,6 +4,7 @@
   "env": { "node": true },
   "rules": {
     "linebreak-style": [ "error", "unix" ],
+    "indent": [ "error", 2 ]
     "quotes": [
       "error",
       "single",

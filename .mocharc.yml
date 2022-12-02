@@ -1,5 +1,5 @@
 extension: [ts]
-file: [src/test/fixture.ts]
+file: [test/fixture.ts]
 require: ['ts-node/register/transpile-only', 'tsconfig-paths/register']
 ui: qunit
 reporter: spec

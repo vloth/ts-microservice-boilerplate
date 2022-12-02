@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-const { spawn } = require('child_process')
-const path = require('path')
-const ora = require('ora')
-const chalk = require('chalk')
-const { GenericContainer } = require('testcontainers')
+import { spawn } from 'child_process'
+import ora from 'ora'
+import chalk from 'chalk'
+import { GenericContainer } from 'testcontainers'
 
 function run(command, env) {
   return new Promise(resolve => {
@@ -48,11 +47,13 @@ async function killOnSignal(container) {
 async function startContainer() {
   const [user, password, db] = ['postgres', 'postgres', 'btc_wallet']
 
-  container = await new GenericContainer('postgres')
+  const container = await new GenericContainer('postgres')
     .withExposedPorts(5432)
-    .withEnv('POSTGRES_PASSWORD', password)
-    .withEnv('POSTGRES_USER', user)
-    .withEnv('POSTGRES_DB', db)
+    .withEnvironment({ 
+        POSTGRES_PASSWORD: password,
+        POSTGRES_USER: user,
+        POSTGRES_DB: db
+    })
     .start()
 
   const host = container.getHost()

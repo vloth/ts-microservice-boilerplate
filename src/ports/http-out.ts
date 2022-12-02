@@ -1,4 +1,3 @@
-import fetch from 'node-fetch'
 import * as Schema from '@app/schemas'
 import * as Adpaters from '@app/adapters'
 

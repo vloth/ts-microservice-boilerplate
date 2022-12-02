@@ -1,10 +1,10 @@
 import { Db, WebServer, logger } from '@app/system'
 import { routes } from '@app/routes'
-import { oki } from '@app/utils'
+import { fine } from '@app/utils'
 
 async function main() {
-  const port = parseInt(oki(process.env.port), 10)
-  const db = oki(process.env.db)
+  const port = parseInt(fine(process.env.port), 10)
+  const db = fine(process.env.db)
 
   try {
     await Db.new(db).migrate()
